@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace eba_canliders_bot_v2
 {
@@ -49,7 +50,11 @@ namespace eba_canliders_bot_v2
         
         int showpass = 0;
 
-
+        /// <summary>
+        /// Form Move Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void formPanel_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -57,29 +62,64 @@ namespace eba_canliders_bot_v2
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        void DriverHideService()
+        /// <summary>
+        /// Saving User Settings
+        /// </summary>
+        private void SaveUserSettings()
         {
-            Process proc = new Process();
+            Properties.Settings.Default.IdNumber = Convert.ToInt32(txtID.Text);
             
-            proc.StartInfo.FileName = Path.Combine("geckodriver.exe", "");
+            Properties.Settings.Default.Password = txtPass.Text;
             
-            proc.StartInfo.CreateNoWindow = true;
+            Properties.Settings.Default.IWebFirefox = rdbFirefox.Checked;
             
-            proc.StartInfo.RedirectStandardOutput = true;
+            Properties.Settings.Default.IWebChrome = rdbChrome.Checked;
             
-            proc.StartInfo.UseShellExecute = false;
+            Properties.Settings.Default.IsShowId = showID.Checked;
             
-            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            Properties.Settings.Default.IsShowPassword = showPass.Checked;
+            
+            Properties.Settings.Default.IsDataProtectionMode = dataProtectionMode.Checked;
+            
+            Properties.Settings.Default.IsRememberMeMode = rememberMode.Checked;
+            
+            Properties.Settings.Default.Save();
         }
 
-        void LogScroller()
+        /// <summary>
+        /// Getting User Settings
+        /// </summary>
+        private void GetUserSettings()
+        {
+            txtID.Text = Convert.ToString(Properties.Settings.Default.IdNumber);
+            
+            txtPass.Text = Properties.Settings.Default.Password;
+            
+            rdbFirefox.Checked = Properties.Settings.Default.IWebFirefox;
+            
+            rdbChrome.Checked = Properties.Settings.Default.IWebChrome;
+            
+            showID.Checked = Properties.Settings.Default.IsShowId;
+            
+            showPass.Checked = Properties.Settings.Default.IsShowPassword;
+            
+            dataProtectionMode.Checked = Properties.Settings.Default.IsDataProtectionMode;
+            
+            rememberMode.Checked = Properties.Settings.Default.IsRememberMeMode; 
+        }
+
+
+        /// <summary>
+        /// Log Scroller : scrolls the log list down as new record is added
+        /// </summary>
+        private void LogScroller()
         {
             lstLog.SelectedIndex = lstLog.Items.Count - 1;
             
             lstLog.SetSelected(lstLog.Items.Count - 1, false);
         }
 
-        void DriverExistsController()
+        private void DriverExistsController()
         {
             string ChromePath = @"chromedriver.exe";
            
@@ -107,6 +147,10 @@ namespace eba_canliders_bot_v2
             
         }
 
+        /// <summary>
+        /// Bot login client. Authorization processes work here.
+        /// </summary>
+        /// <returns></returns>
         private async Task Login()
         {
             try
@@ -114,9 +158,7 @@ namespace eba_canliders_bot_v2
                 if (rdbFirefox.Checked == true)
                 {
                     IWebDriver geckodriver = new FirefoxDriver();
-                    
-                    DriverHideService();
-                    
+                                        
                     lstLog.Items.Add("🌐 Starting IWebDriver Service...");
                     
                     File.AppendAllText("log.txt", Environment.UserName + " " + Environment.NewLine + " " + DateTime.Now.ToString("dd.MM.yyyy HH:mm" + " " + "Starting IWebDriver Service..." + " " + Environment.NewLine + "--------------------------------------------------------------------" + Environment.NewLine));
@@ -182,8 +224,6 @@ namespace eba_canliders_bot_v2
                 {
                     IWebDriver chromedriver = new ChromeDriver();
                     
-                    DriverHideService();
-
                     lstLog.Items.Add("🌐 Starting IWebDriver Service...");
                     File.AppendAllText("log.txt", Environment.UserName + " " + Environment.NewLine + " " + DateTime.Now.ToString("dd.MM.yyyy HH:mm") + " Starting IWebDriver Service..." + " " + Environment.NewLine + "--------------------------------------------------------------------" + Environment.NewLine);
                     
@@ -245,7 +285,7 @@ namespace eba_canliders_bot_v2
 
                 }
             }
-
+            
             catch (Exception ex)
             {
                 errorCount = errorCount + 1;
@@ -267,11 +307,18 @@ namespace eba_canliders_bot_v2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            GetUserSettings();
+
             inputController.Start();
             
             driverExistsTimer.Start();
         }
-        
+
+        /// <summary>
+        /// Checking Browser Versions 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCheckVersion_Click(object sender, EventArgs e)
         {
             object path;
@@ -302,6 +349,11 @@ namespace eba_canliders_bot_v2
                 txtID.UseSystemPasswordChar = false;
         }
 
+        /// <summary>
+        /// Input shutdown turns functions off or on based on some criteria.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void inputController_Tick(object sender, EventArgs e)
         {
             if (txtID.Text.Length < 11 || txtPass.Text.Length < 3 || rdbChrome.Checked == false && rdbFirefox.Checked == false)
@@ -318,6 +370,11 @@ namespace eba_canliders_bot_v2
             }
         }
 
+        /// <summary>
+        /// When clicking anywhere in the ID textbox, it jumps to the beginning.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtIDSetCursorPosition(object sender, EventArgs e)
         {
             txtID.Select(txtID.Text.Length, 0);
@@ -346,18 +403,14 @@ namespace eba_canliders_bot_v2
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnDownloadDriver_Click(object sender, EventArgs e)
-        {
-            Forms.DriverInstallerService OpenDriverInstaller = new Forms.DriverInstallerService();
-            
-            this.Hide();
-            
-            OpenDriverInstaller.Show();
-        }
-
         private void driverExistsTimer_Tick(object sender, EventArgs e)
         {
             DriverExistsController();
+        }
+
+        private void main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SaveUserSettings();
         }
     }
 }
