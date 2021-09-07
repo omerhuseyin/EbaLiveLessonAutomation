@@ -45,6 +45,7 @@ namespace eba_canliders_bot_v2
             this.lstLog = new System.Windows.Forms.ListBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dataProtectionMode = new System.Windows.Forms.CheckBox();
             this.showPass = new System.Windows.Forms.CheckBox();
             this.showID = new System.Windows.Forms.CheckBox();
             this.rdbChrome = new System.Windows.Forms.RadioButton();
@@ -58,7 +59,7 @@ namespace eba_canliders_bot_v2
             this.label7 = new System.Windows.Forms.Label();
             this.inputController = new System.Windows.Forms.Timer(this.components);
             this.driverExistsTimer = new System.Windows.Forms.Timer(this.components);
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.rememberMode = new System.Windows.Forms.CheckBox();
             this.formPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSourceCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
@@ -84,7 +85,7 @@ namespace eba_canliders_bot_v2
             this.formPanel.Location = new System.Drawing.Point(0, 0);
             this.formPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.formPanel.Name = "formPanel";
-            this.formPanel.Size = new System.Drawing.Size(787, 56);
+            this.formPanel.Size = new System.Drawing.Size(860, 56);
             this.formPanel.TabIndex = 0;
             this.formPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.formPanel_MouseDown);
             // 
@@ -92,7 +93,7 @@ namespace eba_canliders_bot_v2
             // 
             this.btnSourceCode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSourceCode.Image = global::eba_canliders_bot_v2.Properties.Resources.source;
-            this.btnSourceCode.Location = new System.Drawing.Point(708, 18);
+            this.btnSourceCode.Location = new System.Drawing.Point(781, 18);
             this.btnSourceCode.Name = "btnSourceCode";
             this.btnSourceCode.Size = new System.Drawing.Size(20, 20);
             this.btnSourceCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -114,7 +115,7 @@ namespace eba_canliders_bot_v2
             // 
             this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimize.Image = global::eba_canliders_bot_v2.Properties.Resources.minimize;
-            this.btnMinimize.Location = new System.Drawing.Point(725, 18);
+            this.btnMinimize.Location = new System.Drawing.Point(798, 18);
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(20, 20);
@@ -127,7 +128,7 @@ namespace eba_canliders_bot_v2
             // 
             this.btnQuit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnQuit.Image = global::eba_canliders_bot_v2.Properties.Resources.close;
-            this.btnQuit.Location = new System.Drawing.Point(743, 18);
+            this.btnQuit.Location = new System.Drawing.Point(816, 18);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(20, 20);
@@ -206,7 +207,7 @@ namespace eba_canliders_bot_v2
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(28, 197);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(741, 205);
+            this.groupBox2.Size = new System.Drawing.Size(808, 205);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Logging";
@@ -220,7 +221,7 @@ namespace eba_canliders_bot_v2
             this.lstLog.ItemHeight = 17;
             this.lstLog.Location = new System.Drawing.Point(2, 16);
             this.lstLog.Name = "lstLog";
-            this.lstLog.Size = new System.Drawing.Size(733, 187);
+            this.lstLog.Size = new System.Drawing.Size(802, 187);
             this.lstLog.TabIndex = 0;
             // 
             // btnStart
@@ -228,7 +229,7 @@ namespace eba_canliders_bot_v2
             this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStart.FlatAppearance.BorderSize = 0;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStart.Location = new System.Drawing.Point(53, 18);
+            this.btnStart.Location = new System.Drawing.Point(101, 18);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(103, 35);
             this.btnStart.TabIndex = 1;
@@ -238,7 +239,8 @@ namespace eba_canliders_bot_v2
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.checkBox1);
+            this.groupBox3.Controls.Add(this.rememberMode);
+            this.groupBox3.Controls.Add(this.dataProtectionMode);
             this.groupBox3.Controls.Add(this.showPass);
             this.groupBox3.Controls.Add(this.showID);
             this.groupBox3.Controls.Add(this.rdbChrome);
@@ -248,16 +250,26 @@ namespace eba_canliders_bot_v2
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(413, 63);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(356, 128);
+            this.groupBox3.Size = new System.Drawing.Size(423, 128);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Functions";
+            // 
+            // dataProtectionMode
+            // 
+            this.dataProtectionMode.AutoSize = true;
+            this.dataProtectionMode.Location = new System.Drawing.Point(180, 94);
+            this.dataProtectionMode.Name = "dataProtectionMode";
+            this.dataProtectionMode.Size = new System.Drawing.Size(123, 21);
+            this.dataProtectionMode.TabIndex = 8;
+            this.dataProtectionMode.Text = "Data Protection";
+            this.dataProtectionMode.UseVisualStyleBackColor = true;
             // 
             // showPass
             // 
             this.showPass.AutoSize = true;
             this.showPass.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.showPass.Location = new System.Drawing.Point(114, 94);
+            this.showPass.Location = new System.Drawing.Point(90, 94);
             this.showPass.Name = "showPass";
             this.showPass.Size = new System.Drawing.Size(87, 21);
             this.showPass.TabIndex = 7;
@@ -269,7 +281,7 @@ namespace eba_canliders_bot_v2
             // 
             this.showID.AutoSize = true;
             this.showID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.showID.Location = new System.Drawing.Point(25, 94);
+            this.showID.Location = new System.Drawing.Point(10, 94);
             this.showID.Name = "showID";
             this.showID.Size = new System.Drawing.Size(74, 21);
             this.showID.TabIndex = 6;
@@ -281,7 +293,7 @@ namespace eba_canliders_bot_v2
             // 
             this.rdbChrome.AutoSize = true;
             this.rdbChrome.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdbChrome.Location = new System.Drawing.Point(186, 64);
+            this.rdbChrome.Location = new System.Drawing.Point(232, 64);
             this.rdbChrome.Name = "rdbChrome";
             this.rdbChrome.Size = new System.Drawing.Size(144, 21);
             this.rdbChrome.TabIndex = 5;
@@ -293,7 +305,7 @@ namespace eba_canliders_bot_v2
             // 
             this.rdbFirefox.AutoSize = true;
             this.rdbFirefox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdbFirefox.Location = new System.Drawing.Point(23, 64);
+            this.rdbFirefox.Location = new System.Drawing.Point(41, 64);
             this.rdbFirefox.Name = "rdbFirefox";
             this.rdbFirefox.Size = new System.Drawing.Size(136, 21);
             this.rdbFirefox.TabIndex = 4;
@@ -306,7 +318,7 @@ namespace eba_canliders_bot_v2
             this.btnCheckVersion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCheckVersion.FlatAppearance.BorderSize = 0;
             this.btnCheckVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCheckVersion.Location = new System.Drawing.Point(195, 18);
+            this.btnCheckVersion.Location = new System.Drawing.Point(232, 18);
             this.btnCheckVersion.Name = "btnCheckVersion";
             this.btnCheckVersion.Size = new System.Drawing.Size(103, 35);
             this.btnCheckVersion.TabIndex = 2;
@@ -324,7 +336,7 @@ namespace eba_canliders_bot_v2
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 412);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(787, 70);
+            this.panel2.Size = new System.Drawing.Size(860, 70);
             this.panel2.TabIndex = 4;
             // 
             // pictureBox4
@@ -385,22 +397,22 @@ namespace eba_canliders_bot_v2
             // 
             this.driverExistsTimer.Tick += new System.EventHandler(this.driverExistsTimer_Tick);
             // 
-            // checkBox1
+            // rememberMode
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(207, 94);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(123, 21);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Data Protection";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.rememberMode.AutoSize = true;
+            this.rememberMode.Location = new System.Drawing.Point(308, 94);
+            this.rememberMode.Name = "rememberMode";
+            this.rememberMode.Size = new System.Drawing.Size(92, 21);
+            this.rememberMode.TabIndex = 9;
+            this.rememberMode.Text = "Remember";
+            this.rememberMode.UseVisualStyleBackColor = true;
             // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(15)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(787, 482);
+            this.ClientSize = new System.Drawing.Size(860, 482);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
@@ -413,6 +425,7 @@ namespace eba_canliders_bot_v2
             this.Name = "main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Eba-Bot";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.main_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.formPanel.ResumeLayout(false);
             this.formPanel.PerformLayout();
@@ -464,7 +477,8 @@ namespace eba_canliders_bot_v2
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox dataProtectionMode;
+        private System.Windows.Forms.CheckBox rememberMode;
     }
 }
 
