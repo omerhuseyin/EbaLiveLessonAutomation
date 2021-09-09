@@ -67,7 +67,7 @@ namespace eba_canliders_bot_v2
         /// </summary>
         private void SaveUserSettings()
         {
-            Properties.Settings.Default.IdNumber = Convert.ToInt32(txtID.Text);
+            Properties.Settings.Default.IdNumber = Convert.ToInt64(txtID.Text);
             
             Properties.Settings.Default.Password = txtPass.Text;
             
@@ -107,7 +107,6 @@ namespace eba_canliders_bot_v2
             
             rememberMode.Checked = Properties.Settings.Default.IsRememberMeMode; 
         }
-
 
         /// <summary>
         /// Log Scroller : scrolls the log list down as new record is added
@@ -176,10 +175,16 @@ namespace eba_canliders_bot_v2
                     password = txtPass.Text;
                     
                     IJavaScriptExecutor js = ((IJavaScriptExecutor)geckodriver);
+
+                    if (dataProtectionMode.Checked == true)
+                    {
+
+                        js.ExecuteScript("document.getElementById('tckn').setAttribute('type', 'password')");
                     
-                    js.ExecuteScript("document.getElementById('tckn').setAttribute('type', 'password')");
-                    
-                    lstLog.Items.Add("🔒 Data Protection Enabled");
+                        lstLog.Items.Add("🔒 Data Protection Enabled");
+                   
+                    }
+
                     
                     LogScroller();
                     
@@ -238,12 +243,18 @@ namespace eba_canliders_bot_v2
                     id = txtID.Text;
                     
                     password = txtPass.Text;
-                    
+
                     IJavaScriptExecutor js = ((IJavaScriptExecutor)chromedriver);
-                    
-                    js.ExecuteScript("document.getElementById('tckn').setAttribute('type', 'password')");
-                    
-                    lstLog.Items.Add("🔒 Data Protection Enabled");
+
+                    if (dataProtectionMode.Checked == true)
+                    {
+
+                        js.ExecuteScript("document.getElementById('tckn').setAttribute('type', 'password')");
+
+                        lstLog.Items.Add("🔒 Data Protection Enabled");
+
+                    }
+
                     
                     LogScroller();
                     

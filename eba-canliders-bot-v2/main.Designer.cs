@@ -45,6 +45,7 @@ namespace eba_canliders_bot_v2
             this.lstLog = new System.Windows.Forms.ListBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rememberMode = new System.Windows.Forms.CheckBox();
             this.dataProtectionMode = new System.Windows.Forms.CheckBox();
             this.showPass = new System.Windows.Forms.CheckBox();
             this.showID = new System.Windows.Forms.CheckBox();
@@ -59,7 +60,6 @@ namespace eba_canliders_bot_v2
             this.label7 = new System.Windows.Forms.Label();
             this.inputController = new System.Windows.Forms.Timer(this.components);
             this.driverExistsTimer = new System.Windows.Forms.Timer(this.components);
-            this.rememberMode = new System.Windows.Forms.CheckBox();
             this.formPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSourceCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
@@ -93,7 +93,7 @@ namespace eba_canliders_bot_v2
             // 
             this.btnSourceCode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSourceCode.Image = global::eba_canliders_bot_v2.Properties.Resources.source;
-            this.btnSourceCode.Location = new System.Drawing.Point(781, 18);
+            this.btnSourceCode.Location = new System.Drawing.Point(778, 18);
             this.btnSourceCode.Name = "btnSourceCode";
             this.btnSourceCode.Size = new System.Drawing.Size(20, 20);
             this.btnSourceCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -115,7 +115,7 @@ namespace eba_canliders_bot_v2
             // 
             this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimize.Image = global::eba_canliders_bot_v2.Properties.Resources.minimize;
-            this.btnMinimize.Location = new System.Drawing.Point(798, 18);
+            this.btnMinimize.Location = new System.Drawing.Point(797, 18);
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(20, 20);
@@ -128,7 +128,7 @@ namespace eba_canliders_bot_v2
             // 
             this.btnQuit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnQuit.Image = global::eba_canliders_bot_v2.Properties.Resources.close;
-            this.btnQuit.Location = new System.Drawing.Point(816, 18);
+            this.btnQuit.Location = new System.Drawing.Point(817, 18);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(20, 20);
@@ -255,6 +255,16 @@ namespace eba_canliders_bot_v2
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Functions";
             // 
+            // rememberMode
+            // 
+            this.rememberMode.AutoSize = true;
+            this.rememberMode.Location = new System.Drawing.Point(308, 94);
+            this.rememberMode.Name = "rememberMode";
+            this.rememberMode.Size = new System.Drawing.Size(92, 21);
+            this.rememberMode.TabIndex = 9;
+            this.rememberMode.Text = "Remember";
+            this.rememberMode.UseVisualStyleBackColor = true;
+            // 
             // dataProtectionMode
             // 
             this.dataProtectionMode.AutoSize = true;
@@ -342,7 +352,7 @@ namespace eba_canliders_bot_v2
             // pictureBox4
             // 
             this.pictureBox4.Image = global::eba_canliders_bot_v2.Properties.Resources.twitter;
-            this.pictureBox4.Location = new System.Drawing.Point(423, 42);
+            this.pictureBox4.Location = new System.Drawing.Point(455, 41);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(20, 20);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -352,7 +362,7 @@ namespace eba_canliders_bot_v2
             // pictureBox3
             // 
             this.pictureBox3.Image = global::eba_canliders_bot_v2.Properties.Resources.github;
-            this.pictureBox3.Location = new System.Drawing.Point(402, 42);
+            this.pictureBox3.Location = new System.Drawing.Point(434, 41);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 20);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -362,7 +372,7 @@ namespace eba_canliders_bot_v2
             // pictureBox2
             // 
             this.pictureBox2.Image = global::eba_canliders_bot_v2.Properties.Resources.instagram;
-            this.pictureBox2.Location = new System.Drawing.Point(381, 42);
+            this.pictureBox2.Location = new System.Drawing.Point(413, 41);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 20);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -372,7 +382,7 @@ namespace eba_canliders_bot_v2
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(336, 5);
+            this.label2.Location = new System.Drawing.Point(368, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(159, 17);
             this.label2.TabIndex = 1;
@@ -381,7 +391,7 @@ namespace eba_canliders_bot_v2
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(288, 22);
+            this.label7.Location = new System.Drawing.Point(320, 21);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(254, 17);
             this.label7.TabIndex = 0;
@@ -396,16 +406,6 @@ namespace eba_canliders_bot_v2
             // driverExistsTimer
             // 
             this.driverExistsTimer.Tick += new System.EventHandler(this.driverExistsTimer_Tick);
-            // 
-            // rememberMode
-            // 
-            this.rememberMode.AutoSize = true;
-            this.rememberMode.Location = new System.Drawing.Point(308, 94);
-            this.rememberMode.Name = "rememberMode";
-            this.rememberMode.Size = new System.Drawing.Size(92, 21);
-            this.rememberMode.TabIndex = 9;
-            this.rememberMode.Text = "Remember";
-            this.rememberMode.UseVisualStyleBackColor = true;
             // 
             // main
             // 
