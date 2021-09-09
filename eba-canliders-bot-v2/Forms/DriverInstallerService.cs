@@ -47,7 +47,12 @@ namespace eba_canliders_bot_v2.Forms
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         int seconds = 0;
+
         const string rarPath = @"driver.rar";
+
+        string zipPath = @"driver.rar";
+
+        string destination = @".\";
 
         private static Driver GetDriver(int driverVersion)
         {
@@ -145,20 +150,14 @@ namespace eba_canliders_bot_v2.Forms
         }
 
 
-        private void WW_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private async Task Test()
         {
             try
             {
-
-                lstLog.Items.Add("Driver Successfully Downloaded!");
-
-                LogScroller();
-
                 bool fileExistChrome = File.Exists(_chromePath);
 
                 if (fileExistChrome)
                 {
-                    lstLog.Items.Add("");
 
                     LogScroller();
 
@@ -193,7 +192,36 @@ namespace eba_canliders_bot_v2.Forms
 
                     LogScroller();
 
-                    RedirectController.Start();
+
+                }
+
+                else
+                {
+
+
+                    lstLog.Items.Add($"Extracting Driver from {rarPath}");
+
+                    LogScroller();
+
+                    ZipFile.ExtractToDirectory(zipPath, destination);
+
+                    lstLog.Items.Add($"Driver Extracted from {rarPath} Successfully");
+
+                    LogScroller();
+
+                    lstLog.Items.Add($"Deleting {rarPath} File. Please Wait...");
+
+                    LogScroller();
+
+                    File.Delete(rarPath);
+
+                    lstLog.Items.Add($"{rarPath} File Deleted Successfully!");
+
+                    LogScroller();
+
+                    lstLog.Items.Add("Task Completed. Redirecting...");
+
+                    LogScroller();
 
                 }
             }
@@ -201,6 +229,15 @@ namespace eba_canliders_bot_v2.Forms
             {
                 lstLog.Items.Add($"Error : {ex}");
             }
+        }
+
+        private void WW_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            lstLog.Items.Add("Driver Successfully Downloaded!");
+
+            Task.Run(Test);
+           
+            RedirectController.Start();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
