@@ -25,6 +25,7 @@ namespace eba_canliders_bot_v2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public long IdNumber {
             get {
                 return ((long)(this["IdNumber"]));

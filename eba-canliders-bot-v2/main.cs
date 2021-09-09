@@ -67,23 +67,31 @@ namespace eba_canliders_bot_v2
         /// </summary>
         private void SaveUserSettings()
         {
-            Properties.Settings.Default.IdNumber = Convert.ToInt64(txtID.Text);
-            
-            Properties.Settings.Default.Password = txtPass.Text;
-            
-            Properties.Settings.Default.IWebFirefox = rdbFirefox.Checked;
-            
-            Properties.Settings.Default.IWebChrome = rdbChrome.Checked;
-            
-            Properties.Settings.Default.IsShowId = showID.Checked;
-            
-            Properties.Settings.Default.IsShowPassword = showPass.Checked;
-            
-            Properties.Settings.Default.IsDataProtectionMode = dataProtectionMode.Checked;
-            
-            Properties.Settings.Default.IsRememberMeMode = rememberMode.Checked;
-            
-            Properties.Settings.Default.Save();
+            try
+            {
+                Properties.Settings.Default.IdNumber = long.Parse(txtID.Text);
+
+                Properties.Settings.Default.Password = txtPass.Text;
+
+                Properties.Settings.Default.IWebFirefox = rdbFirefox.Checked;
+
+                Properties.Settings.Default.IWebChrome = rdbChrome.Checked;
+
+                Properties.Settings.Default.IsShowId = showID.Checked;
+
+                Properties.Settings.Default.IsShowPassword = showPass.Checked;
+
+                Properties.Settings.Default.IsDataProtectionMode = dataProtectionMode.Checked;
+
+                Properties.Settings.Default.IsRememberMeMode = rememberMode.Checked;
+
+                Properties.Settings.Default.Save();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -91,21 +99,48 @@ namespace eba_canliders_bot_v2
         /// </summary>
         private void GetUserSettings()
         {
-            txtID.Text = Convert.ToString(Properties.Settings.Default.IdNumber);
+            try
+            {
+                txtID.Text = Convert.ToString(Properties.Settings.Default.IdNumber);
+
+                txtPass.Text = Properties.Settings.Default.Password;
+
+                rdbFirefox.Checked = Properties.Settings.Default.IWebFirefox;
+
+                rdbChrome.Checked = Properties.Settings.Default.IWebChrome;
+
+                showID.Checked = Properties.Settings.Default.IsShowId;
+
+                showPass.Checked = Properties.Settings.Default.IsShowPassword;
+
+                dataProtectionMode.Checked = Properties.Settings.Default.IsDataProtectionMode;
+
+                rememberMode.Checked = Properties.Settings.Default.IsRememberMeMode;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void ClearUserSettings()
+        {
+            txtID.Text = string.Empty;
             
-            txtPass.Text = Properties.Settings.Default.Password;
+            txtPass.Text = string.Empty;
             
-            rdbFirefox.Checked = Properties.Settings.Default.IWebFirefox;
+            rdbFirefox.Checked = false;
             
-            rdbChrome.Checked = Properties.Settings.Default.IWebChrome;
+            rdbChrome.Checked = false;
             
-            showID.Checked = Properties.Settings.Default.IsShowId;
+            showID.Checked = false;
             
-            showPass.Checked = Properties.Settings.Default.IsShowPassword;
+            showPass.Checked = false;
             
-            dataProtectionMode.Checked = Properties.Settings.Default.IsDataProtectionMode;
+            dataProtectionMode.Checked = false;
             
-            rememberMode.Checked = Properties.Settings.Default.IsRememberMeMode; 
+            rememberMode.Checked = false;
         }
 
         /// <summary>
@@ -319,6 +354,10 @@ namespace eba_canliders_bot_v2
         private void Form1_Load(object sender, EventArgs e)
         {
             GetUserSettings();
+            if (rememberMode.Checked == false)
+            {
+                ClearUserSettings();
+            }
 
             inputController.Start();
             
