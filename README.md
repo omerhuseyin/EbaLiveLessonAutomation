@@ -1,5 +1,5 @@
 <div align='center' textalign='center'>
-<img src="https://img.shields.io/github/license/{omerhuseyingul}/{eba-canliders-bot-v2}.svg">
+<img src="https://img.shields.io/github/license/{https://github.com/omerhuseyingul/}/{https://github.com/omerhuseyingul/eba-canliders-bot-v2}.svg">
 <img src="https://img.shields.io/github/downloads/{username}/{repo-name}/total.svg">
 <img src="https://img.shields.io/github/forks/{username}/{repo-name}.svg">
 <img src="https://img.shields.io/github/stars/{username}/{repo-name}.svg">
