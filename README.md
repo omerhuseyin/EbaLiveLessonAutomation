@@ -1,11 +1,10 @@
 <div align='center' textalign='center'>
 <img src="https://img.shields.io/github/license/omerhuseyingul/eba-canliders-bot-v2.svg">
 <img src="https://img.shields.io/github/downloads/omerhuseyingul/eba-canliders-bot-v2/total.svg">
-<img src="https://img.shields.io/github/forks/{username}/{repo-name}.svg">
-<img src="https://img.shields.io/github/stars/{username}/{repo-name}.svg">
-<img src="https://img.shields.io/github/watchers/{username}/{repo-name}.svg">
-<img src="https://img.shields.io/github/followers/{username}.svg?style=social&label=Follow&maxAge=2592000">
-<img src="https://badge-size.herokuapp.com/{username}/{repo}/{branch}/{filename}">
+<img src="https://img.shields.io/github/forks/omerhuseyingul/eba-canliders-bot-v2.svg">
+<img src="https://img.shields.io/github/stars/omerhuseyingul/{repo-name}.svg">
+<img src="https://img.shields.io/github/watchers/omerhuseyingul/{repo-name}.svg">
+<img src="https://img.shields.io/github/followers/omerhuseyingul.svg?style=social&label=Follow&maxAge=2592000">
 </div>
 # eba-canliders-bot-v2
 Eba live lesson bot. Lets you automatically connect to your live lectures by bot.
