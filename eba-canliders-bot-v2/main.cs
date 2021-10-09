@@ -117,6 +117,7 @@ namespace eba_canliders_bot_v2
 
                 rememberMode.Checked = Properties.Settings.Default.IsRememberMeMode;
             }
+
             catch (Exception)
             {
                 MessageBox.Show("something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -191,7 +192,12 @@ namespace eba_canliders_bot_v2
             {
                 if (rdbFirefox.Checked == true)
                 {
-                    IWebDriver geckodriver = new FirefoxDriver();
+
+                    var FirefoxService = FirefoxDriverService.CreateDefaultService();
+
+                    FirefoxService.HideCommandPromptWindow = true;
+
+                    IWebDriver geckodriver = new FirefoxDriver(FirefoxService);
                                         
                     lstLog.Items.Add("🌐 Starting IWebDriver Service...");
                     
@@ -262,7 +268,11 @@ namespace eba_canliders_bot_v2
 
                 else if (rdbChrome.Checked == true)
                 {
-                    IWebDriver chromedriver = new ChromeDriver();
+                    var ChromeService = ChromeDriverService.CreateDefaultService();
+
+                    ChromeService.HideCommandPromptWindow = true;
+
+                    IWebDriver chromedriver = new ChromeDriver(ChromeService);
                     
                     lstLog.Items.Add("🌐 Starting IWebDriver Service...");
                     File.AppendAllText("log.txt", Environment.UserName + " " + Environment.NewLine + " " + DateTime.Now.ToString("dd.MM.yyyy HH:mm") + " Starting IWebDriver Service..." + " " + Environment.NewLine + "--------------------------------------------------------------------" + Environment.NewLine);
@@ -354,6 +364,7 @@ namespace eba_canliders_bot_v2
         private void Form1_Load(object sender, EventArgs e)
         {
             GetUserSettings();
+
             if (rememberMode.Checked == false)
             {
                 ClearUserSettings();
@@ -445,7 +456,31 @@ namespace eba_canliders_bot_v2
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Process[] ChromeIsOpen = Process.GetProcessesByName("chromedriver");
+            Process[] GeckoIsOpen = Process.GetProcessesByName("geckodriver");
+
+
+            if (ChromeIsOpen.Length == 0)
+
+                this.Close();
+
+            else
+
+                foreach (var process in Process.GetProcessesByName("chromedriver"))
+                
+                    process.Kill();
+
+            
+            if (GeckoIsOpen.Length == 0)
+
+                this.Close();
+            else
+            
+                foreach (var process in Process.GetProcessesByName("geckodriver"))
+                    process.Kill();
+
+            Environment.Exit(0);
+
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
