@@ -87,10 +87,14 @@ namespace eba_canliders_bot_v2
 
                 Properties.Settings.Default.Save();
 
+                LoggingService.WriteLog("User settings have been successfully saved to the system.");
+
             }
             catch (Exception)
             {
                 MessageBox.Show("something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                LoggingService.WriteLog("An error occurred while saving user settings.");
             }
         }
 
@@ -121,6 +125,8 @@ namespace eba_canliders_bot_v2
             catch (Exception)
             {
                 MessageBox.Show("something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                LoggingService.WriteLog("Error reading user settings.");
             }
 
         }
@@ -152,6 +158,35 @@ namespace eba_canliders_bot_v2
             lstLog.SelectedIndex = lstLog.Items.Count - 1;
             
             lstLog.SetSelected(lstLog.Items.Count - 1, false);
+        }
+
+        private void DriverProcessTerminationService()
+        {
+            Process[] ChromeIsOpen = Process.GetProcessesByName("chromedriver");
+
+            Process[] GeckoIsOpen = Process.GetProcessesByName("geckodriver");
+
+
+            if (ChromeIsOpen.Length != 0)
+            {
+                foreach (var process in Process.GetProcessesByName("chromedriver"))
+                    process.Kill();
+
+                LoggingService.WriteLog("geckodriver service has been closed.");
+            }
+
+            if (GeckoIsOpen.Length != 0)
+            {
+                foreach (var process in Process.GetProcessesByName("geckodriver"))
+                    process.Kill();
+
+                LoggingService.WriteLog("geckodriver service has been closed.");
+            }
+            this.Close();
+
+            LoggingService.WriteLog("Software Has Been Closed.");
+
+            Environment.Exit(0);
         }
 
         private void DriverExistsController()
@@ -200,9 +235,11 @@ namespace eba_canliders_bot_v2
                     IWebDriver geckodriver = new FirefoxDriver(FirefoxService);
                                         
                     lstLog.Items.Add("🌐 Starting IWebDriver Service...");
-                    
-                    File.AppendAllText("log.txt", Environment.UserName + " " + Environment.NewLine + " " + DateTime.Now.ToString("dd.MM.yyyy HH:mm" + " " + "Starting IWebDriver Service..." + " " + Environment.NewLine + "--------------------------------------------------------------------" + Environment.NewLine));
-                    
+
+                    LoggingService.WriteLog("Starting SeleniumQA IWebDriver Service...");
+
+                    LoggingService.WriteLog("SeleniumQA IWebDriver Status : OK");
+
                     LogScroller();
                     
                     geckodriver.Navigate().GoToUrl(TargetUrl);
@@ -223,7 +260,9 @@ namespace eba_canliders_bot_v2
                         js.ExecuteScript("document.getElementById('tckn').setAttribute('type', 'password')");
                     
                         lstLog.Items.Add("🔒 Data Protection Enabled");
-                   
+
+                        LoggingService.WriteLog("Data Protection Enabled (tckn).setAttribute('type', 'password')");
+
                     }
 
                     
@@ -232,7 +271,9 @@ namespace eba_canliders_bot_v2
                     geckodriver.FindElement(By.Id("tckn")).SendKeys(id);
                     
                     lstLog.Items.Add("✔️ ID Number Transferred");
-                    
+
+                    LoggingService.WriteLog($" ID Number Matching This Filter Has Been Transferred ({id})");
+
                     LogScroller();
                     
                     geckodriver.FindElement(By.Id("password")).SendKeys(password);
@@ -240,9 +281,13 @@ namespace eba_canliders_bot_v2
                     LogScroller();
                     
                     lstLog.Items.Add("✔️ Password Transferred");
-                    
+
+                    LoggingService.WriteLog($" Password Matching This Filter Has Been Transferred ({password})");
+
                     geckodriver.FindElement(By.ClassName("nl-form-send-btn")).Click();
-                    
+
+                    LoggingService.WriteLog("Authorization Button Clicked. Attempting Authorization...");
+
                     lstLog.Items.Add("⌛ Attempting Authorization");
                     
                     LogScroller();
@@ -250,6 +295,8 @@ namespace eba_canliders_bot_v2
                     if (geckodriver.Url == target)
                     {
                         lstLog.Items.Add("✔️ Authorization Successfully");
+
+                        LoggingService.WriteLog("Authorization Successfully");
                     
                         LogScroller();
                     }
@@ -257,7 +304,9 @@ namespace eba_canliders_bot_v2
                     else
                     {
                         lstLog.Items.Add("❌ Authentication Failed - Check your ID or Password.");
-                        
+
+                        LoggingService.WriteLog("Authentication Failed. Try Again.");
+
                         LogScroller();
                         
                         txtID.Enabled = true;
@@ -273,10 +322,11 @@ namespace eba_canliders_bot_v2
                     ChromeService.HideCommandPromptWindow = true;
 
                     IWebDriver chromedriver = new ChromeDriver(ChromeService);
-                    
-                    lstLog.Items.Add("🌐 Starting IWebDriver Service...");
-                    File.AppendAllText("log.txt", Environment.UserName + " " + Environment.NewLine + " " + DateTime.Now.ToString("dd.MM.yyyy HH:mm") + " Starting IWebDriver Service..." + " " + Environment.NewLine + "--------------------------------------------------------------------" + Environment.NewLine);
-                    
+
+                    LoggingService.WriteLog("Starting SeleniumQA IWebDriver Service...");
+
+                    LoggingService.WriteLog("SeleniumQA IWebDriver Status : OK");
+
                     LogScroller();
                     
                     chromedriver.Navigate().GoToUrl(TargetUrl);
@@ -298,25 +348,33 @@ namespace eba_canliders_bot_v2
 
                         lstLog.Items.Add("🔒 Data Protection Enabled");
 
+                        LoggingService.WriteLog("Data Protection Enabled (tckn).setAttribute('type', 'password')");
+
                     }
 
-                    
+
                     LogScroller();
                     
                     chromedriver.FindElement(By.Id("tckn")).SendKeys(id);
                     
                     lstLog.Items.Add("✔️ ID Number Transferred");
-                    
+
+                    LoggingService.WriteLog($" ID Number Matching This Filter Has Been Transferred ({id})");
+
                     LogScroller();
                     
                     chromedriver.FindElement(By.Id("password")).SendKeys(password);
-                    
+
                     LogScroller();
                     
                     lstLog.Items.Add("✔️ Password Transferred");
-                    
+
+                    LoggingService.WriteLog($" Password Matching This Filter Has Been Transferred ({password})");
+
                     chromedriver.FindElement(By.ClassName("nl-form-send-btn")).Click();
-                    
+
+                    LoggingService.WriteLog("Authorization Button Clicked. Attempting Authorization...");
+
                     lstLog.Items.Add("⌛ Attempting Authorization");
                     
                     LogScroller();
@@ -325,13 +383,17 @@ namespace eba_canliders_bot_v2
                     if (chromedriver.Url != target)
                     {
                         lstLog.Items.Add("✔️ Authorization Successfully");
-                    
+
+                        LoggingService.WriteLog("Authorization Successfully");
+
                         LogScroller();
                     }
                     else
                     {
                         lstLog.Items.Add("❌ Authentication Failed - Check your ID or Password.");
-                        
+
+                        LoggingService.WriteLog("Authentication Failed. Try Again.");
+
                         LogScroller();
                         
                         txtID.Enabled = true;
@@ -347,10 +409,12 @@ namespace eba_canliders_bot_v2
                 errorCount = errorCount + 1;
                 
                 lstLog.Items.Add("❌ Error " + errorCount + " " + ex);
-                
+
+                LoggingService.WriteLog(ex.ToString());
+
+
                 LogScroller();
-                
-                File.AppendAllText("log.txt", Environment.UserName + " " + Environment.NewLine + " " + DateTime.Now.ToString("dd.MM.yyyy HH:mm" + " " + ex + " " + Environment.NewLine + "--------------------------------------------------------------------" + Environment.NewLine));
+
             }
         }
 
@@ -363,6 +427,12 @@ namespace eba_canliders_bot_v2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoggingService.WriteLog("--------------------------------------------");
+
+            LoggingService.WriteLog("Eba Bot Opened");
+
+            LoggingService.WriteLog("Eba Bot Service Status : OK");
+
             GetUserSettings();
 
             if (rememberMode.Checked == false)
@@ -385,11 +455,12 @@ namespace eba_canliders_bot_v2
             object path;
             
             lstLog.Items.Add("Checking... Please Wait.");
-            
+
             path = Registry.GetValue(@"HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe", "", null);
             
             if (path != null)
                 lstLog.Items.Add("Chrome Version : " + FileVersionInfo.GetVersionInfo(path.ToString()).FileVersion);
+
 
             path = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\firefox.exe", "", null);
             
@@ -456,31 +527,7 @@ namespace eba_canliders_bot_v2
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
-            Process[] ChromeIsOpen = Process.GetProcessesByName("chromedriver");
-            Process[] GeckoIsOpen = Process.GetProcessesByName("geckodriver");
-
-
-            if (ChromeIsOpen.Length == 0)
-
-                this.Close();
-
-            else
-
-                foreach (var process in Process.GetProcessesByName("chromedriver"))
-                
-                    process.Kill();
-
-            
-            if (GeckoIsOpen.Length == 0)
-
-                this.Close();
-            else
-            
-                foreach (var process in Process.GetProcessesByName("geckodriver"))
-                    process.Kill();
-
-            Environment.Exit(0);
-
+            DriverProcessTerminationService();
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -496,6 +543,8 @@ namespace eba_canliders_bot_v2
         private void main_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveUserSettings();
+
+            DriverProcessTerminationService();
         }
     }
 }

@@ -136,6 +136,7 @@ namespace eba_canliders_bot_v2.Forms
             }
             catch (Exception ex)
             {
+                LoggingService.WriteLog(ex.ToString());
 
                 lstLog.Items.Add($"Error {ex}");
             }
@@ -169,16 +170,21 @@ namespace eba_canliders_bot_v2.Forms
 
                     lstLog.Items.Add($"Extracting Driver from {rarPath}");
 
+                    LoggingService.WriteLog($"Extracting Driver from {rarPath}");
+
                     LogScroller();
 
                     ZipFile.ExtractToDirectory(zipPath, destination);
 
                     lstLog.Items.Add($"Driver Extracted from {rarPath} Successfully");
+                    
+                    LoggingService.WriteLog($"Driver Extracted from {rarPath} Successfully");
 
                     LogScroller();
 
                     lstLog.Items.Add($"Deleting {rarPath} File. Please Wait...");
 
+                    LoggingService.WriteLog($"Deleting {rarPath} File. Please Wait...");
 
                     LogScroller();
 
@@ -186,9 +192,13 @@ namespace eba_canliders_bot_v2.Forms
 
                     lstLog.Items.Add($"{rarPath} File Deleted Successfully!");
 
-                    LogScroller();
+                    LoggingService.WriteLog($"{rarPath} File Deleted Successfully!");
 
+                    LogScroller();
+                    
                     lstLog.Items.Add("Task Completed. Redirecting...");
+
+                    LoggingService.WriteLog("Task Completed. Redirecting...");
 
                     LogScroller();
 
@@ -201,15 +211,21 @@ namespace eba_canliders_bot_v2.Forms
 
                     lstLog.Items.Add($"Extracting Driver from {rarPath}");
 
+                    LoggingService.WriteLog($"Extracting Driver from {rarPath}");
+
                     LogScroller();
 
                     ZipFile.ExtractToDirectory(zipPath, destination);
 
                     lstLog.Items.Add($"Driver Extracted from {rarPath} Successfully");
 
+                    LoggingService.WriteLog($"Driver Extracted from {rarPath} Successfully");
+
                     LogScroller();
 
                     lstLog.Items.Add($"Deleting {rarPath} File. Please Wait...");
+
+                    LoggingService.WriteLog($"Deleting {rarPath} File. Please Wait...");
 
                     LogScroller();
 
@@ -217,9 +233,13 @@ namespace eba_canliders_bot_v2.Forms
 
                     lstLog.Items.Add($"{rarPath} File Deleted Successfully!");
 
+                    LoggingService.WriteLog($"{rarPath} File Deleted Successfully!");
+
                     LogScroller();
 
                     lstLog.Items.Add("Task Completed. Redirecting...");
+
+                    LoggingService.WriteLog("Task Completed. Redirecting...");
 
                     LogScroller();
 
@@ -228,12 +248,17 @@ namespace eba_canliders_bot_v2.Forms
             catch (Exception ex)
             {
                 lstLog.Items.Add($"Error : {ex}");
+
+                LoggingService.WriteLog(ex.ToString());
+
             }
         }
 
         private void WW_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             lstLog.Items.Add("Driver Successfully Downloaded!");
+
+            LoggingService.WriteLog("Driver Successfully Downloaded!");
 
             Task.Run(Test);
            
