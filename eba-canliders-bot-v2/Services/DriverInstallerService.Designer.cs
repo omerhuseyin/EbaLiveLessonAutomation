@@ -32,19 +32,20 @@ namespace eba_canliders_bot_v2.Forms
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverInstallerService));
             this.formPanel = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.PictureBox();
+            this.btnMinimize = new System.Windows.Forms.PictureBox();
+            this.btnSource = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lstLog = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.RedirectController = new System.Windows.Forms.Timer(this.components);
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.btnExit = new System.Windows.Forms.PictureBox();
-            this.btnMinimize = new System.Windows.Forms.PictureBox();
-            this.btnSource = new System.Windows.Forms.PictureBox();
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.formPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // formPanel
@@ -59,55 +60,6 @@ namespace eba_canliders_bot_v2.Forms
             this.formPanel.Size = new System.Drawing.Size(522, 38);
             this.formPanel.TabIndex = 0;
             this.formPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.formPanel_MouseDown);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(20, 195);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(195, 16);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Eba-Bot | coded by laweis © 2021 ";
-            // 
-            // lstLog
-            // 
-            this.lstLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(15)))), ((int)(((byte)(64)))));
-            this.lstLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstLog.Enabled = false;
-            this.lstLog.ForeColor = System.Drawing.Color.White;
-            this.lstLog.FormattingEnabled = true;
-            this.lstLog.ItemHeight = 16;
-            this.lstLog.Location = new System.Drawing.Point(255, 171);
-            this.lstLog.Name = "lstLog";
-            this.lstLog.Size = new System.Drawing.Size(267, 112);
-            this.lstLog.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(20, 211);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(224, 16);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "All legal responsibility belongs to the user.";
-            // 
-            // RedirectController
-            // 
-            this.RedirectController.Interval = 1000;
-            this.RedirectController.Tick += new System.EventHandler(this.RedirectController_Tick);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(23, 157);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(107, 34);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 3;
-            this.pictureBox5.TabStop = false;
             // 
             // btnExit
             // 
@@ -147,6 +99,61 @@ namespace eba_canliders_bot_v2.Forms
             this.btnSource.TabIndex = 0;
             this.btnSource.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(20, 195);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(194, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Eba-Bot | coded by laweis © 2021 ";
+            // 
+            // lstLog
+            // 
+            this.lstLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(15)))), ((int)(((byte)(64)))));
+            this.lstLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstLog.Enabled = false;
+            this.lstLog.ForeColor = System.Drawing.Color.White;
+            this.lstLog.FormattingEnabled = true;
+            this.lstLog.ItemHeight = 16;
+            this.lstLog.Location = new System.Drawing.Point(255, 171);
+            this.lstLog.Name = "lstLog";
+            this.lstLog.Size = new System.Drawing.Size(267, 112);
+            this.lstLog.TabIndex = 9;
+            this.lstLog.SelectedIndexChanged += new System.EventHandler(this.lstLog_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(20, 211);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(223, 16);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "All legal responsibility belongs to the user.";
+            // 
+            // RedirectController
+            // 
+            this.RedirectController.Interval = 1000;
+            this.RedirectController.Tick += new System.EventHandler(this.RedirectController_Tick);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(23, 157);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(107, 34);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 3;
+            this.pictureBox5.TabStop = false;
+            // 
+            // bunifuElipse1
+            // 
+            this.bunifuElipse1.ElipseRadius = 35;
+            this.bunifuElipse1.TargetControl = this;
+            // 
             // DriverInstallerService
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -166,10 +173,10 @@ namespace eba_canliders_bot_v2.Forms
             this.Text = "DriverInstallerService";
             this.Load += new System.EventHandler(this.DriverInstallerService_Load);
             this.formPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,5 +193,6 @@ namespace eba_canliders_bot_v2.Forms
         private System.Windows.Forms.ListBox lstLog;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer RedirectController;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
     }
 }

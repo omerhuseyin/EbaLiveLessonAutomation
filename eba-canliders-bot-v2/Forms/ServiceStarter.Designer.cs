@@ -1,7 +1,7 @@
 ﻿
 namespace eba_canliders_bot_v2
 {
-    partial class main
+    partial class ServiceStarter
     {
         /// <summary>
         /// Required designer variable.
@@ -53,13 +53,12 @@ namespace eba_canliders_bot_v2
             this.rdbFirefox = new System.Windows.Forms.RadioButton();
             this.btnCheckVersion = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.versionNumber = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.inputController = new System.Windows.Forms.Timer(this.components);
             this.driverExistsTimer = new System.Windows.Forms.Timer(this.components);
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.formPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSourceCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
@@ -69,9 +68,6 @@ namespace eba_canliders_bot_v2
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // formPanel
@@ -338,9 +334,7 @@ namespace eba_canliders_bot_v2
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.pictureBox4);
-            this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.versionNumber);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -349,35 +343,15 @@ namespace eba_canliders_bot_v2
             this.panel2.Size = new System.Drawing.Size(860, 70);
             this.panel2.TabIndex = 4;
             // 
-            // pictureBox4
+            // versionNumber
             // 
-            this.pictureBox4.Image = global::eba_canliders_bot_v2.Properties.Resources.twitter;
-            this.pictureBox4.Location = new System.Drawing.Point(455, 41);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::eba_canliders_bot_v2.Properties.Resources.github;
-            this.pictureBox3.Location = new System.Drawing.Point(434, 41);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::eba_canliders_bot_v2.Properties.Resources.instagram;
-            this.pictureBox2.Location = new System.Drawing.Point(413, 41);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.versionNumber.AutoSize = true;
+            this.versionNumber.Location = new System.Drawing.Point(429, 44);
+            this.versionNumber.Name = "versionNumber";
+            this.versionNumber.Size = new System.Drawing.Size(43, 17);
+            this.versionNumber.TabIndex = 2;
+            this.versionNumber.Text = "vX.X.X";
+            this.versionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -407,7 +381,12 @@ namespace eba_canliders_bot_v2
             // 
             this.driverExistsTimer.Tick += new System.EventHandler(this.driverExistsTimer_Tick);
             // 
-            // main
+            // bunifuElipse1
+            // 
+            this.bunifuElipse1.ElipseRadius = 35;
+            this.bunifuElipse1.TargetControl = this;
+            // 
+            // ServiceStarter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -422,7 +401,7 @@ namespace eba_canliders_bot_v2
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "main";
+            this.Name = "ServiceStarter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Eba-Bot";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.main_FormClosed);
@@ -440,9 +419,6 @@ namespace eba_canliders_bot_v2
             this.groupBox3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -474,11 +450,10 @@ namespace eba_canliders_bot_v2
         private System.Windows.Forms.Timer inputController;
         private System.Windows.Forms.Timer driverExistsTimer;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.CheckBox dataProtectionMode;
         private System.Windows.Forms.CheckBox rememberMode;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
+        private System.Windows.Forms.Label versionNumber;
     }
 }
 

@@ -10,16 +10,10 @@ namespace eba_canliders_bot_v2
 {
     public static class LoggingService
     {
-        public static void WriteLog(string message) 
+        public static void WriteLog(string action) 
         {
-            string logPath = @"log.txt";
-
-            using (StreamWriter writer = new StreamWriter(logPath, true))
-            {
-
-                writer.WriteLine($"{DateTime.Now} : {message}");
-
-            }
+            const string logPath = @"log.txt";
+            using (StreamWriter writer = new StreamWriter(logPath, true)) {writer.WriteLine($"{DateTime.Now} : {action}"); }
         }
     }
 }

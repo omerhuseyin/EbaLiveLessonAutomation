@@ -36,7 +36,7 @@ namespace eba_canliders_bot_v2
 
                     process.Kill();
 
-            Application.Run(new Forms.DriverInstallerService());
+            Application.Run(new loader());
         }
     }
 }
